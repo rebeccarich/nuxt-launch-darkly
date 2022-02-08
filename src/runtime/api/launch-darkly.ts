@@ -1,0 +1,53 @@
+import LaunchDarkly from 'launchdarkly-node-server-sdk'
+import config from '#config'
+import { useQuery } from 'h3'
+
+const LD_SDK_KEY = config.launchDarkly.sdkKey
+const LD_CLIENT = LaunchDarkly.init(LD_SDK_KEY)
+const hasData = (property) => property !== undefined
+
+export type LDError = 'Launch Darkly user key is not defined'
+
+export default async (
+  req
+): Promise<LaunchDarkly.LDFlagsState | LaunchDarkly.LDFlagSet | LDError> => {
+  const { key, email, defaultValue } = useQuery(req)
+  const flagKey = req.url.split('?')[0].replace('/', '')
+
+  if (!hasData(key)) {
+    return 'Launch Darkly user key is not defined'
+  }
+
+  const client = await LD_CLIENT.waitForInitialization()
+
+  const user = {
+    key: key.toString(),
+    ...(hasData(email) && {
+      email: email.toString()
+    })
+  }
+
+  // fetch the value of a single variation for the provided user
+  if (hasData(flagKey) && hasData(defaultValue)) {
+    try {
+      const variation = await client.variation(
+        flagKey.toString(),
+        user,
+        defaultValue
+      )
+      return { variation }
+    } catch (e) {
+      return e
+    }
+  }
+  // fetch the values of all the variations for the provided user
+  else {
+    client.identify(user)
+    try {
+      const flags = await client.allFlagsState(user)
+      return flags.toJSON()
+    } catch (e) {
+      return e
+    }
+  }
+}

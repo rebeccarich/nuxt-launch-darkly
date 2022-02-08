@@ -1,0 +1,8 @@
+{
+  "extends": "./playground/.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "#app": ["./node_modules/nuxt3/dist/app"]
+    }
+  }
+}

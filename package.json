@@ -1,0 +1,49 @@
+{
+  "name": "nuxt-launch-darkly",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "nuxt",
+    "nuxtjs",
+    "nuxt3",
+    "nuxt 3",
+    "module",
+    "nuxt-module",
+    "launch darkly"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "nuxt-module-build",
+    "play": "nuxi dev playground",
+    "play:build": "nuxi build playground",
+    "prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepack": "npm run build",
+    "release": "standard-version && git push --follow-tags"
+  },
+  "dependencies": {
+    "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
+    "defu": "^5.0.1",
+    "launchdarkly-node-server-sdk": "^6.2.2"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "latest",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nuxt3": "latest",
+    "prettier": "^2.5.1",
+    "standard-version": "^9.3.2"
+  }
+}
