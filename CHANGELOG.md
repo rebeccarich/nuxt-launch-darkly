@@ -1,0 +1,10 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 0.0.1 (2022-02-08)
+
+
+### Features
+
+* initial implementation ([25c4a70](https://github.com/rebeccarich/nuxt-launch-darkly/commit/25c4a708d63352f46c87b37153d5c74fcd1356ac))
