@@ -10,7 +10,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'nuxt-launch-darkly',
+    name: '@mftc/nuxt-launch-darkly',
     configKey: 'launchDarkly',
     compatibility: {
       nuxt: '^3.0.0'

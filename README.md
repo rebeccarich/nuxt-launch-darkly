@@ -1,4 +1,4 @@
-# nuxt-launch-darkly
+# @mftc/nuxt-launch-darkly
 
 > A Nuxt module for interacting with the [Launch Darkly SDK](https://docs.launchdarkly.com/sdk/server-side/node-js)
 
@@ -11,10 +11,10 @@
 
 ## Setup
 
-1. Install `nuxt-launch-darkly`
+1. Install `@mftc/nuxt-launch-darkly`
 
 ```bash
-npm install nuxt-launch-darkly or # yarn add nuxt-launch-darkly
+npm install @mftc/nuxt-launch-darkly or # yarn add @mftc/nuxt-launch-darkly
 ```
 
 2. Add it as a `buildModule` in `nuxt.config.ts` and configure it with your Launch Darkly [server-side SDK key](https://app.launchdarkly.com/settings/projects).
@@ -22,7 +22,7 @@ npm install nuxt-launch-darkly or # yarn add nuxt-launch-darkly
 
 ```js
 export default defineNuxtConfig({
-  buildModules: ['nuxt-launch-darkly'],
+  buildModules: ['@mftc/nuxt-launch-darkly'],
   privateRuntimeConfig: {
     launchDarkly: {
       addPlugin: true, // optional, default false
