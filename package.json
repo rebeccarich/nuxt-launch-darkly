@@ -12,6 +12,7 @@
     "nuxt-module",
     "launch darkly"
   ],
+  "homepage": "https://github.com/rebeccarich/nuxt-launch-darkly",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
