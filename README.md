@@ -106,5 +106,5 @@ USER_KEY= # the unique key of a user captured by LD
 FLAG_KEY= # name of a feature flag defined in LD project
 ```
 
-- Run `npm run prepare` to generate type stubs.
+- Run `npm run prepare:playground` to generate type stubs.
 - Use `npm run play` to start [playground](./playground) in development mode.
