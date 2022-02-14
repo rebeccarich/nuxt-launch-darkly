@@ -1,19 +1,24 @@
 import { LDUser } from 'launchdarkly-node-server-sdk'
+import { useRuntimeConfig } from '#app'
 
 export interface LDVariation {
   variation: boolean
 }
 
-export function useLaunchDarkly() {
+export const useLaunchDarkly = () => {
   /**
    * Fetches all the variations for the provided user
    * @param user LDUser
-   * @returns Promise<object>
+   * @returns Promise<Map<string, boolean>>
    */
   const getAllVariations = async (user: LDUser) => {
-    const res = await $fetch<object>('/api/launch-darkly', {
-      params: user
-    })
+    const { launchDarkly } = useRuntimeConfig()
+    const res = await useFetch<string, Map<string, boolean>>(
+      launchDarkly.apiPath,
+      {
+        params: user
+      }
+    )
     return res
   }
 
@@ -28,9 +33,13 @@ export function useLaunchDarkly() {
     flagKey: string,
     defaultValue: boolean = false
   ) => {
-    const res = await $fetch<LDVariation>(`/api/launch-darkly/${flagKey}`, {
-      params: { ...user, defaultValue: defaultValue.toString() }
-    })
+    const { launchDarkly } = useRuntimeConfig()
+    const res = await useFetch<string, LDVariation>(
+      `${launchDarkly.apiPath}/${flagKey}`,
+      {
+        params: { ...user, defaultValue: defaultValue.toString() }
+      }
+    )
     return res
   }
 

@@ -5,6 +5,7 @@ import defu from 'defu'
 
 export interface ModuleOptions {
   addPlugin: Boolean
+  apiPath: string
   sdkKey?: string
 }
 
@@ -17,26 +18,26 @@ export default defineNuxtModule<ModuleOptions>({
     }
   },
   defaults: {
-    addPlugin: false
+    addPlugin: false,
+    apiPath: '/api/launch-darkly'
   },
   setup(options, nuxt) {
     // if sdkKey is not defined, let's get outta here
-    if (
-      options.sdkKey === undefined &&
-      nuxt.options.privateRuntimeConfig.launchDarkly.sdkKey === undefined
-    ) {
+    if (nuxt.options.privateRuntimeConfig.launchDarkly.sdkKey === undefined) {
       throw new Error(
-        'launch darkly SDK key is not defined. Please add it to your nuxt.config file'
+        'Launch Darkly SDK key is not defined. Please add it to privateRuntimeConfig in your nuxt.config file'
       )
     }
 
-    // Default runtime config
-    // Add user defined config to privateRuntimeConfig
-    nuxt.options.privateRuntimeConfig.launchDarkly = defu(
-      nuxt.options.privateRuntimeConfig.launchDarkly,
+    // Add user defined config to publicRuntimeConfig
+    nuxt.options.publicRuntimeConfig.launchDarkly = defu(
+      {
+        ...nuxt.options.launchDarkly,
+        ...nuxt.options.publicRuntimeConfig.launchDarkly
+      },
       {
         addPlugin: options.addPlugin,
-        sdkKey: options.sdkKey
+        apiPath: options.apiPath
       }
     )
 
@@ -51,12 +52,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     // add API route
     addServerMiddleware({
-      path: '/api/launch-darkly',
+      path: nuxt.options.publicRuntimeConfig.launchDarkly.apiPath,
       handler: resolve(runtimeDir, 'api', 'launch-darkly')
     })
 
     // add plugin
-    if (nuxt.options.privateRuntimeConfig.launchDarkly.addPlugin) {
+    if (nuxt.options.publicRuntimeConfig.launchDarkly.addPlugin) {
       addPlugin(resolve(runtimeDir, 'launch-darkly.plugin'))
     }
   }
