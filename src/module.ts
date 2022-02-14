@@ -56,7 +56,7 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // add plugin
-    if (nuxt.options.privateRuntimeConfig.launchDarkly) {
+    if (nuxt.options.privateRuntimeConfig.launchDarkly.addPlugin) {
       addPlugin(resolve(runtimeDir, 'launch-darkly.plugin'))
     }
   }
