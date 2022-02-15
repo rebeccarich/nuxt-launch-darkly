@@ -29,11 +29,16 @@ export default defineNuxtModule<ModuleOptions>({
       )
     }
 
+    // create copy without sdkKey if present
+    const { sdkKey, ...noSecretPrivateConfig } =
+      nuxt.options.privateRuntimeConfig.launchDarkly
+
     // Add user defined config to publicRuntimeConfig
     nuxt.options.publicRuntimeConfig.launchDarkly = defu(
       {
-        ...nuxt.options.launchDarkly,
-        ...nuxt.options.publicRuntimeConfig.launchDarkly
+        ...noSecretPrivateConfig,
+        ...nuxt.options.publicRuntimeConfig.launchDarkly,
+        ...nuxt.options.launchDarkly
       },
       {
         addPlugin: options.addPlugin,
