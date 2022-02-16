@@ -3,14 +3,14 @@ name: Build Playground
 on: [pull_request]
 
 jobs:
-  check-types:
+  build-playground:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Test on Node 16.x
         uses: actions/setup-node@v1
       - name: Install dependencies
-        run: npm install --production
+        run: npm install
       - name: Build Playground
         run: npm run play:build
       - name: Run Playground
