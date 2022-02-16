@@ -1,0 +1,22 @@
+name: Build Playground
+
+on: [pull_request]
+
+jobs:
+  check-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test on Node 16.x
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm install --production
+      - name: Build Playground
+        run: npm run play:build
+      - name: Run Playground
+        run: npm run play:start
+        env:
+          LD_SDK_KEY: ${{secrets.LD_SDK_KEY}}
+          USER_KEY: ${{secrets.USER_KEY}}
+          EMAIL: ${{secrets.EMAIL}}
+          FLAG_KEY: ${{secrets.FLAG_KEY}}
