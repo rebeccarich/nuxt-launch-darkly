@@ -18,15 +18,18 @@ npm install @mftc/nuxt-launch-darkly or # yarn add @mftc/nuxt-launch-darkly
 ```
 
 2. Add it as a `buildModule` in `nuxt.config.ts` and configure it with your Launch Darkly [server-side SDK key](https://app.launchdarkly.com/settings/projects).
-   The config should go in `privateRuntimeConfig` since the Launch Darkly SDK Key needs to be kept private.
+   The `sdkKey` should go in `privateRuntimeConfig` since the Launch Darkly SDK Key needs to be kept private.
 
 ```js
 export default defineNuxtConfig({
   buildModules: ['@mftc/nuxt-launch-darkly'],
+  launchDarkly: {
+    apiPath: '/api/launch-darkly', // optional, customisable api path, default '/api/launch-darkly'
+    addPlugin: false // optional, default false
+  },
   privateRuntimeConfig: {
     launchDarkly: {
-      addPlugin: true, // optional, default false
-      sdkKey: process.env.LD_SDK_KEY // required, your LD SDK key
+      sdkKey: process.env.LD_SDK_KEY
     }
   }
 })
@@ -79,13 +82,13 @@ This module exposes the REST endpoint that is used by the composables and the pl
 ##### Get all variants
 
 ```html
-GET /api/launch-darkly?key=xxx-xxx&email=user@domain.com
+GET ${apiPath}/?key=xxx-xxx&email=user@domain.com
 ```
 
 ##### Get single variant
 
 ```html
-GET /api/launch-darkly/{variant-key}?key=xxx-xxx&email=user@domain.com
+GET ${apiPath}/{variant-key}?key=xxx-xxx&email=user@domain.com
 ```
 
 **Params**:
@@ -94,6 +97,8 @@ GET /api/launch-darkly/{variant-key}?key=xxx-xxx&email=user@domain.com
 key: string
 email?: string // optional
 ```
+
+The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
 
 ## Development
 
