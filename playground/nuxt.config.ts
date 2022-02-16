@@ -3,9 +3,12 @@ import launchDarkly from '..'
 
 export default defineNuxtConfig({
   buildModules: [launchDarkly],
+  launchDarkly: {
+    addPlugin: true,
+    apiPath: '/api/launch-darkly'
+  },
   privateRuntimeConfig: {
     launchDarkly: {
-      addPlugin: true,
       sdkKey: process.env.LD_SDK_KEY
     }
   },
