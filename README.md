@@ -6,7 +6,7 @@ _This module is under heavy development so expect breaking changes._
 
 ## Features
 
-- 🌈 [Composables](#-composables) for Composition API support
+- 🌈 [Composable](#-composable) for Composition API support
 - ⚡️ Adds a [REST endpoint](#-rest-endpoint) for custom integrations
 - 💯 Nuxt 3
 
@@ -31,15 +31,14 @@ export default defineNuxtConfig({
   },
   // optional
   launchDarkly: {
-    apiPath: '/api/launch-darkly', // customisable api path, default '/api/launch-darkly'
-    addPlugin: false // default false
+    apiPath: '/api/launch-darkly' // customisable api path, default '/api/launch-darkly'
   }
 })
 ```
 
 ## Usage
 
-#### 🧩 Composables
+#### 🧩 Composable
 
 ```ts
 <script setup async>
@@ -60,7 +59,7 @@ export default defineNuxtConfig({
 
 #### 🌀 REST Endpoint
 
-This module exposes the REST endpoint that is used by the composables and the plugin internally. This could be useful if you wanted to get all the flags on page load and save them to the store for example.
+This module exposes the REST endpoint that is used by the composable internally. This could be useful if you wanted to get all the flags on page load and save them to the store for example.
 
 ##### Get all variants
 
@@ -82,27 +81,6 @@ email?: string // optional
 ```
 
 The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
-
-#### 🔌 Plugin
-
-**Deprecation warning: the plugin is deprecated and will be remove in v1.0. Avoid using it.**
-
-```ts
-<script setup async>
-  const USER = {
-    key: 'UNIQUE_USER_ID',
-    email: 'user@domain.com' // optional
-  }
-  const FLAG_KEY = 'my-feature-flag'
-
-  const { $launchDarkly } = useNuxtApp()
-
-  // get all variations for the provided user
-  const allFlags = await $launchDarkly.getAllVariations(USER)
-  // get a specified variation for the provided user
-  const singleFlag = await $launchDarkly.getVariationByKey(USER, FLAG_KEY)
-</script>
-```
 
 ## Development
 
