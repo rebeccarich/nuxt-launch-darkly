@@ -63,6 +63,9 @@ export default defineNuxtModule<ModuleOptions>({
 
     // add plugin
     if (nuxt.options.publicRuntimeConfig.launchDarkly.addPlugin) {
+      console.warn(
+        'Nuxt Launch Darkly: $launchDarkly plugin is deprecated and will be removed in version 1.0'
+      )
       addPlugin(resolve(runtimeDir, 'launch-darkly.plugin'))
     }
   }

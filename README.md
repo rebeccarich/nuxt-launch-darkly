@@ -2,10 +2,11 @@
 
 > A Nuxt module for interacting with the [Launch Darkly SDK](https://docs.launchdarkly.com/sdk/server-side/node-js)
 
+_This module is under heavy development so expect breaking changes._
+
 ## Features
 
-- 👌 [Composables](#-composables) for Composition API support
-- 🌈 Optionally include a [plugin](#-plugin)
+- 🌈 [Composables](#-composables) for Composition API support
 - ⚡️ Adds a [REST endpoint](#-rest-endpoint) for custom integrations
 - 💯 Nuxt 3
 
@@ -23,14 +24,15 @@ npm install @mftc/nuxt-launch-darkly or # yarn add @mftc/nuxt-launch-darkly
 ```js
 export default defineNuxtConfig({
   buildModules: ['@mftc/nuxt-launch-darkly'],
-  launchDarkly: {
-    apiPath: '/api/launch-darkly', // optional, customisable api path, default '/api/launch-darkly'
-    addPlugin: false // optional, default false
-  },
   privateRuntimeConfig: {
     launchDarkly: {
       sdkKey: process.env.LD_SDK_KEY
     }
+  },
+  // optional
+  launchDarkly: {
+    apiPath: '/api/launch-darkly', // customisable api path, default '/api/launch-darkly'
+    addPlugin: false // default false
   }
 })
 ```
@@ -56,7 +58,34 @@ export default defineNuxtConfig({
 </script>
 ```
 
+#### 🌀 REST Endpoint
+
+This module exposes the REST endpoint that is used by the composables and the plugin internally. This could be useful if you wanted to get all the flags on page load and save them to the store for example.
+
+##### Get all variants
+
+```html
+GET ${api-path}/?key=xxx-xxx&email=user@domain.com
+```
+
+##### Get single variant
+
+```html
+GET ${api-path}/{variant-key}?key=xxx-xxx&email=user@domain.com
+```
+
+**Params**:
+
+```ts
+key: string
+email?: string // optional
+```
+
+The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
+
 #### 🔌 Plugin
+
+**Deprecation warning: the plugin is deprecated and will be remove in v1.0. Avoid using it.**
 
 ```ts
 <script setup async>
@@ -74,31 +103,6 @@ export default defineNuxtConfig({
   const singleFlag = await $launchDarkly.getVariationByKey(USER, FLAG_KEY)
 </script>
 ```
-
-#### 🌀 REST Endpoint
-
-This module exposes the REST endpoint that is used by the composables and the plugin internally. This could be useful if you wanted to get all the flags on page load and save them to the store for example.
-
-##### Get all variants
-
-```html
-GET ${apiPath}/?key=xxx-xxx&email=user@domain.com
-```
-
-##### Get single variant
-
-```html
-GET ${apiPath}/{variant-key}?key=xxx-xxx&email=user@domain.com
-```
-
-**Params**:
-
-```ts
-key: string
-email?: string // optional
-```
-
-The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
 
 ## Development
 
