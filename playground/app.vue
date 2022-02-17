@@ -3,9 +3,27 @@
     <h1>Usage</h1>
     <section>
       <h4>Single flag</h4>
-      {{ singleFlagComposable }}
+      <div>
+        <p data-test="single-variant-pending">
+          Pending: {{ singleFlagComposable.pending }}
+        </p>
+        <p data-test="single-variant-error">
+          Error: {{ singleFlagComposable.error }}
+        </p>
+        <p data-test="single-variant-data">
+          Data: {{ singleFlagComposable.data }}
+        </p>
+      </div>
       <h4>All flags</h4>
-      {{ allFlagsComposable }}
+      <div>
+        <p data-test="all-variants-pending">
+          Pending: {{ allFlagsComposable.pending }}
+        </p>
+        <p data-test="all-variants-error">
+          Error: {{ allFlagsComposable.error }}
+        </p>
+        <p data-test="all-variants-data">Data: {{ allFlagsComposable.data }}</p>
+      </div>
     </section>
   </div>
 </template>

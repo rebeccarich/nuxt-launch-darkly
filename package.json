@@ -26,12 +26,15 @@
   ],
   "scripts": {
     "build": "nuxt-module-build",
+    "build:stub": "nuxt-module-build --stub",
     "play": "nuxi dev playground",
     "play:build": "nuxi build playground",
     "play:start": "nuxi start playground",
     "prepare:playground": "nuxt-module-build --stub && nuxi prepare playground",
     "prepack": "npm run build",
-    "release": "standard-version && git push --follow-tags"
+    "release": "standard-version && git push --follow-tags",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
@@ -41,6 +44,7 @@
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
+    "cypress": "^9.5.0",
     "eslint": "latest",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
