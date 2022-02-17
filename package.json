@@ -29,7 +29,6 @@
     "play": "nuxi dev playground",
     "play:build": "nuxi build playground",
     "play:start": "nuxi start playground",
-    "prepare": "nuxt-module-build",
     "prepare:playground": "nuxt-module-build --stub && nuxi prepare playground",
     "prepack": "npm run build",
     "release": "standard-version && git push --follow-tags"
