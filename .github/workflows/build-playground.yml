@@ -16,10 +16,3 @@ jobs:
         run: npm ci
       - name: Build Playground
         run: npm run play:build
-      - name: Run Playground
-        run: npm run play:start
-        env:
-          LD_SDK_KEY: ${{secrets.LD_SDK_KEY}}
-          USER_KEY: ${{secrets.USER_KEY}}
-          EMAIL: ${{secrets.EMAIL}}
-          FLAG_KEY: ${{secrets.FLAG_KEY}}
