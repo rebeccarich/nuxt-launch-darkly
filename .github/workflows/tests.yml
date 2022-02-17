@@ -1,0 +1,25 @@
+name: Tests
+
+on: [pull_request]
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          build: npm run play:build
+          start: npm run play:start
+          wait-on: http://localhost:3000
+        env:
+          LD_SDK_KEY: ${{secrets.LD_SDK_KEY}}
+          USER_KEY: ${{secrets.USER_KEY}}
+          EMAIL: ${{secrets.EMAIL}}
+          FLAG_KEY: ${{secrets.FLAG_KEY}}

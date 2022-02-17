@@ -32,8 +32,6 @@
     "prepare:playground": "nuxt-module-build --stub && nuxi prepare playground",
     "prepack": "npm run build",
     "release": "standard-version && git push --follow-tags",
-    "test:e2e": "start-server-and-test playground:run http://localhost:3000 cy:run",
-    "test:e2e-watch": "start-server-and-test playground:run http://localhost:3000 cy:open",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
@@ -51,7 +49,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nuxt3": "latest",
     "prettier": "^2.5.1",
-    "standard-version": "^9.3.2",
-    "start-server-and-test": "^1.14.0"
+    "standard-version": "^9.3.2"
   }
 }

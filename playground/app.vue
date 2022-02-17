@@ -24,14 +24,6 @@
         </p>
         <p data-test="all-variants-data">Data: {{ allFlagsComposable.data }}</p>
       </div>
-      <!-- <div data-test="all-variants">
-        <ul>
-          <li v-for="(item, key) in allFlagsComposable.data" :key="key">
-            {{ key }}
-            {{ item }}
-          </li>
-        </ul>
-      </div> -->
     </section>
   </div>
 </template>
