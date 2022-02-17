@@ -12,16 +12,10 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'npm'
-      - name: Cypress install
-        uses: cypress-io/github-action@v3
-        with:
-          runTests: false
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
-          install: false
-          working-directory: ./playground
-          build: npm run play:build
+          build: npm run build && npm run play:build
           start: npm run play:start
           wait-on: http://localhost:3000
         env:
