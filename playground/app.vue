@@ -5,24 +5,28 @@
       <h4>Single flag</h4>
       <div>
         <p data-test="single-variant-pending">
-          Pending: {{ singleFlagComposable.pending }}
+          Pending: {{ singleFlag.pending }}
         </p>
-        <p data-test="single-variant-error">
-          Error: {{ singleFlagComposable.error }}
+        <p data-test="single-variant-error">Error: {{ singleFlag.error }}</p>
+        <p data-test="single-variant-data">Data: {{ singleFlag.data }}</p>
+      </div>
+      <h4>Single flag detail</h4>
+      <div>
+        <p data-test="single-variant-detail-pending">
+          Pending: {{ singleFlagDetail.pending }}
         </p>
-        <p data-test="single-variant-data">
-          Data: {{ singleFlagComposable.data }}
+        <p data-test="single-variant-detail-error">
+          Error: {{ singleFlagDetail.error }}
+        </p>
+        <p data-test="single-variant-detail-data">
+          Data: {{ singleFlagDetail.data }}
         </p>
       </div>
       <h4>All flags</h4>
       <div>
-        <p data-test="all-variants-pending">
-          Pending: {{ allFlagsComposable.pending }}
-        </p>
-        <p data-test="all-variants-error">
-          Error: {{ allFlagsComposable.error }}
-        </p>
-        <p data-test="all-variants-data">Data: {{ allFlagsComposable.data }}</p>
+        <p data-test="all-variants-pending">Pending: {{ allFlags.pending }}</p>
+        <p data-test="all-variants-error">Error: {{ allFlags.error }}</p>
+        <p data-test="all-variants-data">Data: {{ allFlags.data }}</p>
       </div>
     </section>
   </div>
@@ -36,8 +40,10 @@ const USER = {
 }
 const FLAG_KEY = config.flagKey
 
-const { getAllVariations, getVariationByKey } = useLaunchDarkly()
+const { getAllVariations, getVariationByKey, getVariationDetail } =
+  useLaunchDarkly()
 
-const singleFlagComposable = await getVariationByKey(USER, FLAG_KEY)
-const allFlagsComposable = await getAllVariations(USER)
+const singleFlag = await getVariationByKey(USER, FLAG_KEY)
+const singleFlagDetail = await getVariationDetail(USER, FLAG_KEY)
+const allFlags = await getAllVariations(USER)
 </script>

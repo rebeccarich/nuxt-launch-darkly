@@ -63,14 +63,26 @@ This module exposes the REST endpoint that is used by the composable internally.
 
 ##### Get all variants
 
+[LDClient.allFlagsState](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#allFlagsState)
+
 ```html
 GET ${api-path}/?key=xxx-xxx&email=user@domain.com
 ```
 
 ##### Get single variant
 
+[LDClient.variation](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#variation)
+
 ```html
 GET ${api-path}/{variant-key}?key=xxx-xxx&email=user@domain.com
+```
+
+##### Get single variant with detail
+
+[LDClient.variationDetail](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#variationDetail)
+
+```html
+GET ${api-path}/{variant-key}/detail?key=xxx-xxx&email=user@domain.com
 ```
 
 **Params**:

@@ -77,6 +77,10 @@ declare module '@nuxt/schema' {
       launchDarkly?: ModuleOptions
     }
   }
+
+  interface NuxtConfig {
+    launchDarkly?: ModuleOptions
+  }
   interface NuxtOptions {
     launchDarkly?: ModuleOptions
   }
