@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.11...v0.0.12) (2022-02-19)
+
+
+### Features
+
+* add ability to specify what variations get returned from getAllVariations ([#17](https://github.com/rebeccarich/nuxt-launch-darkly/issues/17)) ([bca4039](https://github.com/rebeccarich/nuxt-launch-darkly/commit/bca4039607fa716c515d40692071a3867019c3b8))
+
 ### [0.0.11](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.10...v0.0.11) (2022-02-19)
 
 ### [0.0.10](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.9...v0.0.10) (2022-02-19)
