@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.9...v0.0.10) (2022-02-19)
+
+
+### Features
+
+* add getVariationDetail to api and composable ([#11](https://github.com/rebeccarich/nuxt-launch-darkly/issues/11)) ([a3263e9](https://github.com/rebeccarich/nuxt-launch-darkly/commit/a3263e9a88fb92bb154aeff594a53f76d4eb27a4))
+
 ### [0.0.9](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.8...v0.0.9) (2022-02-16)
 
 
