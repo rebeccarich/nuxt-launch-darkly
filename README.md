@@ -56,6 +56,13 @@ export default defineNuxtConfig({
   const singleFlag = getVariationByKey(USER,   FLAG_KEY)
   // get a specified variation for the provided user with detail
   const singleFlagDetail = getVariationDetail(USER,   FLAG_KEY)
+  // get multiple variations
+  // if you are using any of the functions provided by the
+  // composable more than once per component, don't forget to
+  // pass a unique key to ensure that data fetching can be
+  // properly de-duplicated across requests
+  const pickFlags = getAllVariations(USER, [FLAG_KEY, 'second-key', 'third-key'], 'unique-key')
+
 </script>
 ```
 

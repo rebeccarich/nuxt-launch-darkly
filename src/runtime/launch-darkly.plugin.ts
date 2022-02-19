@@ -1,6 +1,6 @@
 import { LDUser } from 'launchdarkly-node-server-sdk'
-import { useLaunchDarkly } from './composables/useLaunchDarkly'
 import { defineNuxtPlugin } from '#app'
+import { useLaunchDarkly } from './composables/useLaunchDarkly'
 
 const { getAllVariations, getVariationByKey } = useLaunchDarkly()
 

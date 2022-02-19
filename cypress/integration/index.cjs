@@ -42,4 +42,19 @@ describe('@mftc/nuxt-launch-darkly', () => {
     cy.get('[data-test=all-variants-error]').should('contain', 'Error: null')
     cy.get('[data-test=all-variants-data]').should('not.contain', 'Data: null')
   })
+
+  it('should fetch and render result from getAllVariations with includeKey set', () => {
+    cy.get('[data-test=all-variants-pick-pending]').should(
+      'contain',
+      'Pending: false'
+    )
+    cy.get('[data-test=all-variants-pick-error]').should(
+      'contain',
+      'Error: null'
+    )
+    cy.get('[data-test=all-variants-pick-data]').should(
+      'not.contain',
+      'Data: null'
+    )
+  })
 })

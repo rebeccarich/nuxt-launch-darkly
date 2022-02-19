@@ -28,6 +28,14 @@
         <p data-test="all-variants-error">Error: {{ allFlags.error }}</p>
         <p data-test="all-variants-data">Data: {{ allFlags.data }}</p>
       </div>
+      <h4>All flags pick items</h4>
+      <div>
+        <p data-test="all-variants-pick-pending">
+          Pending: {{ pickFlag.pending }}
+        </p>
+        <p data-test="all-variants-pick-error">Error: {{ pickFlag.error }}</p>
+        <p data-test="all-variants-pick-data">Data: {{ pickFlag.data }}</p>
+      </div>
     </section>
   </div>
 </template>
@@ -45,5 +53,6 @@ const { getAllVariations, getVariationByKey, getVariationDetail } =
 
 const singleFlag = getVariationByKey(USER, FLAG_KEY)
 const singleFlagDetail = getVariationDetail(USER, FLAG_KEY)
-const allFlags = getAllVariations(USER)
+const allFlags = getAllVariations(USER, undefined, 'key1')
+const pickFlag = getAllVariations(USER, [FLAG_KEY], 'key2')
 </script>

@@ -22,7 +22,12 @@ const getFunction = () => {}
 
 export default async (
   req: IncomingMessage
-): Promise<LaunchDarkly.LDFlagsState | LDVariation | LDError> => {
+): Promise<
+  | Map<string, boolean>
+  | { variation: LaunchDarkly.LDEvaluationDetail }
+  | LDVariation
+  | LDError
+> => {
   const { key, email, defaultValue } = useQuery(req)
 
   if (!hasData(key)) {
@@ -31,7 +36,7 @@ export default async (
 
   const [flagKey, detail] = parseUrlSegments(req)
 
-  let client
+  let client: LaunchDarkly.LDClient
 
   try {
     client = await LD_CLIENT.waitForInitialization()
@@ -79,7 +84,10 @@ export default async (
     client.identify(user)
     try {
       const flags = await client.allFlagsState(user)
-      return flags.toJSON()
+      const flagsObj = flags.toJSON() as any
+      delete flagsObj.$flagsState
+      delete flagsObj.$valid
+      return flagsObj as Map<string, boolean>
     } catch (e) {
       return e
     }
