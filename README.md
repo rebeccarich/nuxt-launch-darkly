@@ -1,5 +1,7 @@
 # @mftc/nuxt-launch-darkly
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/rebeccarich/nuxt-launch-darkly/Tests) ![npm](https://img.shields.io/npm/dt/@mftc/nuxt-launch-darkly) ![version](https://img.shields.io/npm/v/@mftc/nuxt-launch-darkly) ![NPM](https://img.shields.io/npm/l/@mftc/nuxt-launch-darkly)
+
 > A Nuxt module for interacting with the [Launch Darkly SDK](https://docs.launchdarkly.com/sdk/server-side/node-js)
 
 _This module is under heavy development so expect breaking changes._
