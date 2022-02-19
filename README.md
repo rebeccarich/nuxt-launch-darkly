@@ -33,7 +33,8 @@ export default defineNuxtConfig({
   },
   // optional
   launchDarkly: {
-    apiPath: '/api/launch-darkly' // customisable api path, default '/api/launch-darkly'
+    apiPath: '/api/launch-darkly', // customisable api path: default '/api/launch-darkly'
+    logLevel: 'info' // 'debug' | 'info' | 'warn' | 'error' | 'none': default 'info'
   }
 })
 ```

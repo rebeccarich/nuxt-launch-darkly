@@ -4,13 +4,20 @@ import { useQuery } from 'h3'
 import config from '#config'
 import { LDVariation } from '~~/../src/runtime/composables/useLaunchDarkly'
 
-const LD_SDK_KEY = config.launchDarkly.sdkKey
-const LD_CLIENT = LaunchDarkly.init(LD_SDK_KEY)
-const hasData = (property) => property !== undefined
-
 export type LDError =
   | 'Launch Darkly: user key is not defined'
   | 'Launch Darkly: unable to initialise'
+
+const LD_SDK_KEY = config.launchDarkly.sdkKey
+const LOG_LEVEL = config.launchDarkly.logLevel
+
+const LD_CLIENT = LaunchDarkly.init(LD_SDK_KEY, {
+  logger: LaunchDarkly.basicLogger({
+    level: LOG_LEVEL
+  })
+})
+
+const hasData = (property) => property !== undefined
 
 const parseUrlSegments = (req: IncomingMessage) => {
   const parts = req.url.split('?')[0]
