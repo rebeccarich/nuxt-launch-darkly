@@ -41,19 +41,21 @@ export default defineNuxtConfig({
 #### 🧩 Composable
 
 ```ts
-<script setup async>
+<script setup>
   const USER = {
     key: 'UNIQUE_USER_ID',
     email: 'user@domain.com' // optional
   }
   const FLAG_KEY = 'my-feature-flag'
 
-  const { getAllVariations, getVariationByKey } = useLaunchDarkly()
+  const { getAllVariations, getVariationByKey, getVariationDetail } = useLaunchDarkly()
 
   // get all variations for the provided user
-  const allFlags = await getAllVariations(USER)
+  const allFlags = getAllVariations(USER)
   // get a specified variation for the provided user
-  const singleFlag = await getVariationByKey(USER,   FLAG_KEY)
+  const singleFlag = getVariationByKey(USER,   FLAG_KEY)
+  // get a specified variation for the provided user with detail
+  const singleFlagDetail = getVariationDetail(USER,   FLAG_KEY)
 </script>
 ```
 

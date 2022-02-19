@@ -13,11 +13,10 @@ export const useLaunchDarkly = () => {
   /**
    * Fetches all the variations for the provided user
    * @param user LDUser
-   * @returns Promise<Map<string, boolean>>
    */
-  const getAllVariations = async (user: LDUser) => {
+  const getAllVariations = (user: LDUser) => {
     const { launchDarkly } = useRuntimeConfig()
-    const res = await useFetch<LDFlagsState>(launchDarkly.apiPath, {
+    const res = useFetch<LDFlagsState>(launchDarkly.apiPath, {
       params: user
     })
     return res
@@ -27,20 +26,16 @@ export const useLaunchDarkly = () => {
    * Fetches a single variation for the provided user
    * @param user LDUser
    * @param flagKey string
-   * @returns Promise<LDVariation>
    */
-  const getVariationByKey = async (
+  const getVariationByKey = (
     user: LDUser,
     flagKey: string,
     defaultValue: boolean = false
   ) => {
     const { launchDarkly } = useRuntimeConfig()
-    const res = await useFetch<LDVariation>(
-      `${launchDarkly.apiPath}/${flagKey}`,
-      {
-        params: { ...user, defaultValue: defaultValue.toString() }
-      }
-    )
+    const res = useFetch<LDVariation>(`${launchDarkly.apiPath}/${flagKey}`, {
+      params: { ...user, defaultValue: defaultValue.toString() }
+    })
     return res
   }
 
@@ -48,15 +43,14 @@ export const useLaunchDarkly = () => {
    * Fetches a single variation for the provided user with detail
    * @param user LDUser
    * @param flagKey string
-   * @returns Promise<LDEvaluationDetail>
    */
-  const getVariationDetail = async (
+  const getVariationDetail = (
     user: LDUser,
     flagKey: string,
     defaultValue: boolean = false
   ) => {
     const { launchDarkly } = useRuntimeConfig()
-    const res = await useFetch<LDEvaluationDetail>(
+    const res = useFetch<LDEvaluationDetail>(
       `${launchDarkly.apiPath}/${flagKey}/detail`,
       {
         params: { ...user, defaultValue: defaultValue.toString() }
