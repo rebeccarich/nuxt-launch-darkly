@@ -8,12 +8,18 @@ export type LDError =
   | 'Launch Darkly: user key is not defined'
   | 'Launch Darkly: unable to initialise'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 // load test data
 // for internal development processes only
 const dataSource =
   process.env.LOAD_TEST_DATA === 'true'
     ? LaunchDarkly.FileDataSource({
-        paths: [`${process.cwd()}/playground/static/flag-data.json`]
+        paths: [
+          isDev
+            ? `${process.cwd()}/playground/public/flag-data.json`
+            : 'public/flag-data.json'
+        ]
       })
     : undefined
 
