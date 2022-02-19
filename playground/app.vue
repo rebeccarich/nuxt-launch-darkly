@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script lang="ts" async setup>
+<script lang="ts" setup>
 const config = useRuntimeConfig()
 const USER = {
   key: config.userKey,
@@ -43,7 +43,7 @@ const FLAG_KEY = config.flagKey
 const { getAllVariations, getVariationByKey, getVariationDetail } =
   useLaunchDarkly()
 
-const singleFlag = await getVariationByKey(USER, FLAG_KEY)
-const singleFlagDetail = await getVariationDetail(USER, FLAG_KEY)
-const allFlags = await getAllVariations(USER)
+const singleFlag = getVariationByKey(USER, FLAG_KEY)
+const singleFlagDetail = getVariationDetail(USER, FLAG_KEY)
+const allFlags = getAllVariations(USER)
 </script>
