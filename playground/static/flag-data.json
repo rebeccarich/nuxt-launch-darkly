@@ -1,0 +1,8 @@
+{
+  "flagValues": {
+    "flag-1": true,
+    "flag-2": false,
+    "flag-3": true,
+    "my-feature-flag": true
+  }
+}

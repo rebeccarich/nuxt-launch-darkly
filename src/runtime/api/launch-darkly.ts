@@ -8,12 +8,24 @@ export type LDError =
   | 'Launch Darkly: user key is not defined'
   | 'Launch Darkly: unable to initialise'
 
+// load test data
+// for internal development processes only
+const dataSource =
+  process.env.LOAD_TEST_DATA === 'true'
+    ? LaunchDarkly.FileDataSource({
+        paths: [`${process.cwd()}/playground/static/flag-data.json`]
+      })
+    : undefined
+
 const LD_SDK_KEY = config.launchDarkly.sdkKey
 const LOG_LEVEL = config.launchDarkly.logLevel
 
 const LD_CLIENT = LaunchDarkly.init(LD_SDK_KEY, {
   logger: LaunchDarkly.basicLogger({
     level: LOG_LEVEL
+  }),
+  ...(dataSource && {
+    updateProcessor: dataSource
   })
 })
 
