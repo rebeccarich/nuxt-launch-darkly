@@ -2,10 +2,12 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { defineNuxtModule, addPlugin, addServerMiddleware } from '@nuxt/kit'
 import defu from 'defu'
+import { LDLogLevel } from 'launchdarkly-node-server-sdk'
 
 export interface ModuleOptions {
   addPlugin: Boolean
   apiPath: string
+  logLevel: LDLogLevel
   sdkKey?: string
 }
 
@@ -19,7 +21,8 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     addPlugin: false,
-    apiPath: '/api/launch-darkly'
+    apiPath: '/api/launch-darkly',
+    logLevel: 'info'
   },
   setup(options, nuxt) {
     // if sdkKey is not defined, let's get outta here
@@ -42,7 +45,8 @@ export default defineNuxtModule<ModuleOptions>({
       },
       {
         addPlugin: options.addPlugin,
-        apiPath: options.apiPath
+        apiPath: options.apiPath,
+        logLevel: options.logLevel
       }
     )
 

@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   buildModules: [launchDarkly],
   launchDarkly: {
     addPlugin: true,
-    apiPath: '/api/launch-darkly'
+    apiPath: '/api/launch-darkly',
+    logLevel: 'debug'
   },
   privateRuntimeConfig: {
     launchDarkly: {
