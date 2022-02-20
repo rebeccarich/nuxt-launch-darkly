@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.12...v0.0.13) (2022-02-20)
+
+
+### Features
+
+* make log level configurable ([#19](https://github.com/rebeccarich/nuxt-launch-darkly/issues/19)) ([a3e1034](https://github.com/rebeccarich/nuxt-launch-darkly/commit/a3e10347b91f7377d1ccbd4bc3eb11c3ff17da00))
+
 ### [0.0.12](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.11...v0.0.12) (2022-02-19)
 
 
