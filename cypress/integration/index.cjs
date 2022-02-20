@@ -10,8 +10,8 @@ describe('@mftc/nuxt-launch-darkly', () => {
     )
     cy.get('[data-test=single-variant-error]').should('contain', 'Error: null')
     cy.get('[data-test=single-variant-data]').should(
-      'not.contain',
-      'Data: null'
+      'contain',
+      '"variation": true'
     )
   })
 
@@ -25,8 +25,8 @@ describe('@mftc/nuxt-launch-darkly', () => {
       'Error: null'
     )
     cy.get('[data-test=single-variant-detail-data]').should(
-      'not.contain',
-      'Data: null'
+      'contain',
+      '"value": true'
     )
   })
 
@@ -40,7 +40,9 @@ describe('@mftc/nuxt-launch-darkly', () => {
       'Pending: false'
     )
     cy.get('[data-test=all-variants-error]').should('contain', 'Error: null')
-    cy.get('[data-test=all-variants-data]').should('not.contain', 'Data: null')
+    cy.get('[data-test=all-variants-data]').should('contain', '"flag-1": true')
+    cy.get('[data-test=all-variants-data]').should('contain', '"flag-2": false')
+    cy.get('[data-test=all-variants-data]').should('contain', '"flag-3": true')
   })
 
   it('should fetch and render result from getAllVariations with includeKey set', () => {
@@ -53,8 +55,8 @@ describe('@mftc/nuxt-launch-darkly', () => {
       'Error: null'
     )
     cy.get('[data-test=all-variants-pick-data]').should(
-      'not.contain',
-      'Data: null'
+      'contain',
+      '"flag-1": true'
     )
   })
 })
