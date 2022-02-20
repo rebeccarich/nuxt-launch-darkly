@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.13...v0.0.14) (2022-02-20)
+
+
+### Features
+
+* add support for firstName and lastName properties in LDUser ([#23](https://github.com/rebeccarich/nuxt-launch-darkly/issues/23)) ([fa13dca](https://github.com/rebeccarich/nuxt-launch-darkly/commit/fa13dca4e89382b11b4b00c5146a7f0c0e5a4f3d))
+
 ### [0.0.13](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.12...v0.0.13) (2022-02-20)
 
 
