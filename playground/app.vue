@@ -46,7 +46,7 @@ const USER = {
   key: config.userKey,
   email: config.email
 }
-const FLAG_KEY = config.flagKey
+const FLAG_KEY = 'flag-1'
 
 const { getAllVariations, getVariationByKey, getVariationDetail } =
   useLaunchDarkly()

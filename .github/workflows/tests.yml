@@ -27,4 +27,3 @@ jobs:
           LD_SDK_KEY: ${{secrets.LD_SDK_KEY}}
           USER_KEY: ${{secrets.USER_KEY}}
           EMAIL: ${{secrets.EMAIL}}
-          FLAG_KEY: ${{secrets.FLAG_KEY}}
