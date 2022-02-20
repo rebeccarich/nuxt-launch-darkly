@@ -16,6 +16,7 @@ export default defineNuxtConfig({
   publicRuntimeConfig: {
     email: process.env.EMAIL,
     userKey: process.env.USER_KEY,
-    flagKey: process.env.FLAG_KEY
+    firstName: process.env.FIRST_NAME,
+    lastName: process.env.LAST_NAME
   }
 })
