@@ -44,7 +44,9 @@
 const config = useRuntimeConfig()
 const USER = {
   key: config.userKey,
-  email: config.email
+  email: config.email,
+  firstName: config.firstName,
+  lastName: config.lastName
 }
 const FLAG_KEY = 'flag-1'
 

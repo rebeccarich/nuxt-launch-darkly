@@ -1,5 +1,5 @@
 import { LDEvaluationDetail, LDUser } from 'launchdarkly-node-server-sdk'
-import { useRuntimeConfig, useFetch, AsyncData } from '#app'
+import { useRuntimeConfig, useFetch } from '#app'
 
 export interface LDVariation {
   variation: boolean

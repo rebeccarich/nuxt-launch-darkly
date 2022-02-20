@@ -46,8 +46,10 @@ export default defineNuxtConfig({
 ```ts
 <script setup>
   const USER = {
-    key: 'UNIQUE_USER_ID',
-    email: 'user@domain.com' // optional
+    key: 'UNIQUE_USER_ID', // required
+    email: 'user@domain.com',
+    firstName: 'Jane',
+    lastName: 'Doe'
   }
   const FLAG_KEY = 'my-feature-flag'
 
@@ -71,14 +73,29 @@ export default defineNuxtConfig({
 
 #### 🌀 REST Endpoint
 
-This module exposes the REST endpoint that is used by the composable internally. This could be useful if you wanted to get all the flags on page load and save them to the store for example.
+This module exposes the REST endpoint that is used by the composable internally. This could be useful if you wanted to get all the flags on app init and save them to the store for example.
+
+**Query Parameters**:
+
+```ts
+key: string // required
+email?: string
+firstName?: string
+lastName?: string
+```
+
+```html
+?key=xxx-xxx&email=user@domain.com&firstName=Jane&lastName=Doe
+```
+
+These query parameters are valid for all requests. `key` is the only required parameter.
 
 ##### Get all variants
 
 [LDClient.allFlagsState](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#allFlagsState)
 
 ```html
-GET ${api-path}/?key=xxx-xxx&email=user@domain.com
+GET /api/launch-darkly/?{query-params}
 ```
 
 ##### Get single variant
@@ -86,7 +103,7 @@ GET ${api-path}/?key=xxx-xxx&email=user@domain.com
 [LDClient.variation](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#variation)
 
 ```html
-GET ${api-path}/{variant-key}?key=xxx-xxx&email=user@domain.com
+GET /api/launch-darkly/flag-key?{query-params}
 ```
 
 ##### Get single variant with detail
@@ -94,14 +111,7 @@ GET ${api-path}/{variant-key}?key=xxx-xxx&email=user@domain.com
 [LDClient.variationDetail](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#variationDetail)
 
 ```html
-GET ${api-path}/{variant-key}/detail?key=xxx-xxx&email=user@domain.com
-```
-
-**Params**:
-
-```ts
-key: string
-email?: string // optional
+GET /api/launch-darkly/flag-key/detail?{query-params}
 ```
 
 The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
@@ -114,6 +124,8 @@ The API path will default to `/api/launch-darkly` but you can set a custom path 
 LD_SDK_KEY= # with the value of a Launch Darkly server-side SDK Key.
 EMAIL= # email address of a user captured by LD (optional)
 USER_KEY= # the unique key of a user captured by LD
+FIRST_NAME= # first name
+LAST_NAME= # last name
 ```
 
 - Run `npm run prepare:playground` to generate type stubs.

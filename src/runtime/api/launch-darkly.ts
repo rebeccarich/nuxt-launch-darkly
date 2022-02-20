@@ -114,7 +114,7 @@ export default async (
   | LDVariation
   | LDError
 > => {
-  const { key, email, defaultValue } = useQuery(req)
+  const { key, email, firstName, lastName, defaultValue } = useQuery(req)
 
   if (!hasData(key)) {
     return 'Launch Darkly: user key is not defined'
@@ -134,6 +134,12 @@ export default async (
     key: key.toString(),
     ...(hasData(email) && {
       email: email.toString()
+    }),
+    ...(hasData(firstName) && {
+      firstName: firstName.toString()
+    }),
+    ...(hasData(lastName) && {
+      lastName: lastName.toString()
     })
   }
 
