@@ -114,7 +114,6 @@ The API path will default to `/api/launch-darkly` but you can set a custom path 
 LD_SDK_KEY= # with the value of a Launch Darkly server-side SDK Key.
 EMAIL= # email address of a user captured by LD (optional)
 USER_KEY= # the unique key of a user captured by LD
-FLAG_KEY= # name of a feature flag defined in LD project
 ```
 
 - Run `npm run prepare:playground` to generate type stubs.
