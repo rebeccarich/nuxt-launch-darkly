@@ -60,15 +60,16 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // add API routes
-
-    // TODO: deprecate this route
     addServerMiddleware({
-      path: nuxt.options.publicRuntimeConfig.launchDarkly.apiPath,
-      handler: resolve(runtimeDir, 'api', 'launch-darkly')
+      path: `${nuxt.options.publicRuntimeConfig.launchDarkly.apiPath}/flags`,
+      handler: resolve(runtimeDir, 'api', 'api-flags')
     })
-    // end TODO
 
-    // add plugin
+    addServerMiddleware({
+      path: `${nuxt.options.publicRuntimeConfig.launchDarkly.apiPath}/user`,
+      handler: resolve(runtimeDir, 'api', 'api-user')
+    })
+
     // TODO: deprecate plugin
     if (nuxt.options.publicRuntimeConfig.launchDarkly.addPlugin) {
       console.warn(

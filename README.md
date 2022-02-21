@@ -9,7 +9,7 @@ _This module is under heavy development so expect breaking changes._
 ## Features
 
 - 🌈 [Composable](#-composable) for Composition API support
-- ⚡️ Adds a [REST endpoint](#-rest-endpoint) for custom integrations
+- ⚡️ Adds [REST endpoints](#-rest-endpoint) for custom integrations
 - 💯 Nuxt 3
 
 ## Setup
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
   }
   const FLAG_KEY = 'my-feature-flag'
 
-  const { getAllVariations, getVariationByKey, getVariationDetail } = useLaunchDarkly()
+  const { getAllVariations, getVariationByKey, getVariationDetail, identifyUser } = useLaunchDarkly()
 
   // get all variations for the provided user
   const allFlags = getAllVariations(USER)
@@ -68,12 +68,21 @@ export default defineNuxtConfig({
   // properly de-duplicated across requests
   const pickFlags = getAllVariations(USER, [FLAG_KEY, 'second-key', 'third-key'], 'unique-key')
 
+  // manually identify a user.
+  // note: this is done automatically for you when calling getAllVariations, getVariationByKey and getVariationDetail
+  const identify = () => identifyUser(USER)
+
 </script>
 ```
 
 #### 🌀 REST Endpoint
 
-This module exposes the REST endpoint that is used by the composable internally. This could be useful if you wanted to get all the flags on app init and save them to the store for example.
+This module exposes the REST endpoints that are used by the composable internally. This could be useful if you wanted to get all the flags on app init and save them to the store for example.
+
+The module exposes two endpoints:
+
+1. `${apiPath}/flags`
+1. `${apiPath}/user`
 
 **Query Parameters**:
 
@@ -90,12 +99,16 @@ lastName?: string
 
 These query parameters are valid for all requests. `key` is the only required parameter.
 
+The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
+
+#### /flags
+
 ##### Get all variants
 
 [LDClient.allFlagsState](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#allFlagsState)
 
 ```html
-GET /api/launch-darkly/?{query-params}
+GET /api/launch-darkly/flags?{query-params}
 ```
 
 ##### Get single variant
@@ -103,7 +116,7 @@ GET /api/launch-darkly/?{query-params}
 [LDClient.variation](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#variation)
 
 ```html
-GET /api/launch-darkly/flag-key?{query-params}
+GET /api/launch-darkly/flags/flag-key?{query-params}
 ```
 
 ##### Get single variant with detail
@@ -111,10 +124,16 @@ GET /api/launch-darkly/flag-key?{query-params}
 [LDClient.variationDetail](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#variationDetail)
 
 ```html
-GET /api/launch-darkly/flag-key/detail?{query-params}
+GET /api/launch-darkly/flags/flag-key/detail?{query-params}
 ```
 
-The API path will default to `/api/launch-darkly` but you can set a custom path in the `launchDarkly` config in `nuxt.config.ts`. See the [setup section](#setup) for details
+#### /user
+
+[LDClient.identify](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#identify)
+
+```html
+GET /api/launch-darkly/user/identify?{query-params}
+```
 
 ## Development
 
