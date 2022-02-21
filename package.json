@@ -27,7 +27,7 @@
   "scripts": {
     "build": "nuxt-module-build",
     "build:stub": "nuxt-module-build --stub",
-    "play": "LOAD_TEST_DATA=true nuxi dev playground",
+    "play": "nuxi dev playground",
     "play:build": "nuxi build playground",
     "play:start": "LOAD_TEST_DATA=true nuxi start playground",
     "prepare:playground": "nuxt-module-build --stub && nuxi prepare playground",
