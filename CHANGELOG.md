@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.15...v0.0.16) (2022-02-21)
+
+
+### Bug Fixes
+
+* user params undefined ([#27](https://github.com/rebeccarich/nuxt-launch-darkly/issues/27)) ([e0120ab](https://github.com/rebeccarich/nuxt-launch-darkly/commit/e0120abab85f8b46075f34e37a6312f573ec97a6))
+
 ### [0.0.15](https://github.com/rebeccarich/nuxt-launch-darkly/compare/v0.0.14...v0.0.15) (2022-02-21)
 
 
