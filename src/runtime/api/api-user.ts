@@ -26,12 +26,7 @@ export default async (req: IncomingMessage): Promise<LDError | string> => {
   const [identify] = parseUrlSegments(req)
   const client = await getLDClient()
 
-  const user = getUser(
-    key.toString(),
-    email.toString(),
-    firstName.toString(),
-    lastName.toString()
-  )
+  const user = getUser(key, email, firstName, lastName)
 
   const action = getAction(identify)
   return await action(client, user)

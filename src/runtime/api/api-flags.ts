@@ -45,12 +45,7 @@ export default async (
   const [flagKey, detail] = parseUrlSegments(req)
   const client = await getLDClient()
 
-  const user = getUser(
-    key.toString(),
-    email.toString(),
-    firstName.toString(),
-    lastName.toString()
-  )
+  const user = getUser(key, email, firstName, lastName)
 
   const defaultVal = defaultValue ? defaultValue.toString() : undefined
 
