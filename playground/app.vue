@@ -37,6 +37,10 @@
         <p data-test="all-variants-pick-data">Data: {{ pickFlag.data }}</p>
       </div>
     </section>
+    <section>
+      <h4>User Identify</h4>
+      <button @click="identifyUser(USER)">Identify</button>
+    </section>
   </div>
 </template>
 
@@ -50,8 +54,12 @@ const USER = {
 }
 const FLAG_KEY = 'flag-1'
 
-const { getAllVariations, getVariationByKey, getVariationDetail } =
-  useLaunchDarkly()
+const {
+  getAllVariations,
+  getVariationByKey,
+  getVariationDetail,
+  identifyUser
+} = useLaunchDarkly()
 
 const singleFlag = getVariationByKey(USER, FLAG_KEY)
 const singleFlagDetail = getVariationDetail(USER, FLAG_KEY)

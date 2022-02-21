@@ -3,7 +3,7 @@ import {
   LDEvaluationDetail,
   LDUser
 } from 'launchdarkly-node-server-sdk'
-import { LDVariation } from '../composables/useLaunchDarkly'
+import { LDVariation } from '../types'
 
 /**
  * fetch the values of all the variations for the provided user

@@ -1,15 +1,11 @@
 import { IncomingMessage } from 'http'
 import { LDEvaluationDetail } from 'launchdarkly-node-server-sdk'
 import { useQuery } from 'h3'
-import { LDVariation } from '../composables/useLaunchDarkly'
+import { LDVariation, LDError } from '../types'
 import getLDClient from './get-client'
 import { hasData, parseUrlSegments } from './utils'
 import getUser from './get-user'
 import { variation, variationDetail, allFlagsState } from './actions'
-
-export type LDError =
-  | 'Launch Darkly: user key is not defined'
-  | 'Launch Darkly: unable to initialise'
 
 /**
  * Figure out what action should be performed based on the parameters passed
