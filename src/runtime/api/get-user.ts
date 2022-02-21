@@ -2,10 +2,10 @@ import { LDUser } from 'launchdarkly-node-server-sdk'
 import { hasData } from './utils'
 
 export default function getUser(
-  key: string,
-  email?: string,
-  firstName?: string,
-  lastName?: string
+  key: any,
+  email?: any,
+  firstName?: any,
+  lastName?: any
 ) {
   const user: LDUser = {
     key: key.toString(),
