@@ -1,3 +1,5 @@
+import { IncomingMessage } from 'http'
+
 export const hasData = (property) => property !== undefined
 
 export const parseUrlSegments = (req: IncomingMessage) => {

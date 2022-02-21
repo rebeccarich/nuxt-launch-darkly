@@ -59,13 +59,17 @@ export default defineNuxtModule<ModuleOptions>({
       dirs.push(resolve(runtimeDir, 'composables'))
     })
 
-    // add API route
+    // add API routes
+
+    // TODO: deprecate this route
     addServerMiddleware({
       path: nuxt.options.publicRuntimeConfig.launchDarkly.apiPath,
       handler: resolve(runtimeDir, 'api', 'launch-darkly')
     })
+    // end TODO
 
     // add plugin
+    // TODO: deprecate plugin
     if (nuxt.options.publicRuntimeConfig.launchDarkly.addPlugin) {
       console.warn(
         'Nuxt Launch Darkly: $launchDarkly plugin is deprecated and will be removed in version 1.0'

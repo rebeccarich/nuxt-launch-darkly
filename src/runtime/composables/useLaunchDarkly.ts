@@ -20,7 +20,7 @@ export const useLaunchDarkly = () => {
     key?: string
   ) => {
     const { launchDarkly } = useRuntimeConfig()
-    const res = useFetch<Map<string, boolean>>(launchDarkly.apiPath, {
+    const res = useFetch<Map<string, boolean>>(`${launchDarkly.apiPath}`, {
       params: user,
       pick: includeKeys,
       ...(key && { key })
