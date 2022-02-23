@@ -79,12 +79,8 @@ export const useLaunchDarkly = () => {
   }
 
   /**
-   * Fetches a single variation for the provided user with detail
+   * Identifies a user
    * @param user LDUser
-   * @param flagKey string
-   * @param defaultValue boolean
-   * @param key A unique key to ensure that data fetching can be properly de-duplicated across requests.
-   * Use if getVariationByKey is used more than once per component
    */
   const identifyUser = (user: LDUser) => {
     const { launchDarkly } = useRuntimeConfig()
