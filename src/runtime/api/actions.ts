@@ -93,3 +93,27 @@ export function identifyUser(client: LDClient, user: LDUser): string {
     return e
   }
 }
+
+/**
+ * track custom metric
+ * @param client
+ * @param user
+ * @param key
+ * @param data
+ * @param metricValue
+ * @returns
+ */
+export function track(
+  client: LDClient,
+  user: LDUser,
+  key: string,
+  data?: any,
+  metricValue?: number
+): string {
+  try {
+    client.track(key, user, data, metricValue)
+    return 'success'
+  } catch (e) {
+    return e
+  }
+}

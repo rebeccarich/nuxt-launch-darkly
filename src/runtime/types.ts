@@ -5,3 +5,8 @@ export type LDError =
 export interface LDVariation {
   variation: boolean
 }
+
+export enum LDUserActions {
+  Identify = 'identify',
+  Track = 'track'
+}

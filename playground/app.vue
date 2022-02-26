@@ -41,6 +41,10 @@
       <h4>User Identify</h4>
       <button @click="identifyUser(USER)">Identify</button>
     </section>
+    <section>
+      <h4>Track</h4>
+      <button @click="track(USER, dataToTrack)">Track</button>
+    </section>
   </div>
 </template>
 
@@ -58,8 +62,22 @@ const {
   getAllVariations,
   getVariationByKey,
   getVariationDetail,
-  identifyUser
+  identifyUser,
+  track
 } = useLaunchDarkly()
+
+const dataToTrack = {
+  myKey: {
+    arr: [1, 'foo'],
+    nested: {
+      a: 1,
+      b: {
+        key: 'bar'
+      }
+    }
+  },
+  metricValue: 1
+}
 
 const singleFlag = getVariationByKey(USER, FLAG_KEY)
 const singleFlagDetail = getVariationDetail(USER, FLAG_KEY)
