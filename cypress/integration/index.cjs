@@ -59,4 +59,20 @@ describe('@mftc/nuxt-launch-darkly', () => {
       '"flag-1": true'
     )
   })
+
+  it('should identify a user when the button is clicked', () => {
+    cy.intercept('GET', '**/user/identify**').as('identify')
+    cy.wait(500)
+    cy.get('[data-test="identify-button"]').click()
+    cy.wait('@identify')
+    cy.get('[data-test="identify-result"]').should('contain', 'success')
+  })
+
+  it('should send custom tracking event when the button is clicked', () => {
+    cy.intercept('POST', '**/user/track**').as('track')
+    cy.wait(500)
+    cy.get('[data-test="track-button"]').click()
+    cy.wait('@track')
+    cy.get('[data-test="track-result"]').should('contain', 'success')
+  })
 })
