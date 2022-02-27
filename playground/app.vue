@@ -39,7 +39,13 @@
     </section>
     <section>
       <h4>User Identify</h4>
-      <button @click="identifyUser(USER)">Identify</button>
+      <button data-test="identify-button" @click="identify">Identify</button>
+      <div data-test="identify-result">{{ idResult }}</div>
+    </section>
+    <section>
+      <h4>Track</h4>
+      <button data-test="track-button" @click="trackMetric">Track</button>
+      <div data-test="track-result">{{ trackResult }}</div>
     </section>
   </div>
 </template>
@@ -58,11 +64,44 @@ const {
   getAllVariations,
   getVariationByKey,
   getVariationDetail,
-  identifyUser
+  identifyUser,
+  track
 } = useLaunchDarkly()
+
+const dataToTrack = {
+  myKey: {
+    arr: [1, 'foo'],
+    nested: {
+      a: 1,
+      b: {
+        key: 'bar'
+      }
+    }
+  },
+  metricValue: 1
+}
 
 const singleFlag = getVariationByKey(USER, FLAG_KEY)
 const singleFlagDetail = getVariationDetail(USER, FLAG_KEY)
 const allFlags = getAllVariations(USER, undefined, 'key1')
 const pickFlag = getAllVariations(USER, [FLAG_KEY], 'key2')
+
+const idResult = ref<boolean | string>('')
+const trackResult = ref<boolean | string>('')
+
+const identify = () => {
+  const { data, error, pending } = identifyUser(USER)
+  idResult.value = pending.value
+  watch(pending, () => {
+    idResult.value = data.value || error.value
+  })
+}
+
+const trackMetric = () => {
+  const { data, error, pending } = track(USER, dataToTrack)
+  trackResult.value = pending.value
+  watch(pending, () => {
+    trackResult.value = data.value || error.value
+  })
+}
 </script>

@@ -1,6 +1,7 @@
 import { LDEvaluationDetail, LDUser } from 'launchdarkly-node-server-sdk'
 import { useRuntimeConfig, useFetch } from '#app'
 import { LDVariation } from '../types'
+import { method } from 'cypress/types/bluebird'
 
 export const useLaunchDarkly = () => {
   /**
@@ -93,10 +94,29 @@ export const useLaunchDarkly = () => {
     return res
   }
 
+  /**
+   * Track custom goals or other events
+   * @param user
+   * @param data
+   */
+  const track = (user: LDUser, data: Record<string, any>) => {
+    const { launchDarkly } = useRuntimeConfig()
+    const res = useFetch<LDEvaluationDetail>(
+      `${launchDarkly.apiPath}/user/track`,
+      {
+        method: 'POST',
+        params: user,
+        body: data
+      }
+    )
+    return res
+  }
+
   return {
     getAllVariations,
     getVariationByKey,
     getVariationDetail,
-    identifyUser
+    identifyUser,
+    track
   }
 }

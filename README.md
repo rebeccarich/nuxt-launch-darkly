@@ -53,7 +53,7 @@ export default defineNuxtConfig({
   }
   const FLAG_KEY = 'my-feature-flag'
 
-  const { getAllVariations, getVariationByKey, getVariationDetail, identifyUser } = useLaunchDarkly()
+  const { getAllVariations, getVariationByKey, getVariationDetail, identifyUser, track } = useLaunchDarkly()
 
   // get all variations for the provided user
   const allFlags = getAllVariations(USER)
@@ -71,6 +71,22 @@ export default defineNuxtConfig({
   // manually identify a user.
   // note: this is done automatically for you when calling getAllVariations, getVariationByKey and getVariationDetail
   const identify = () => identifyUser(USER)
+
+  // track custom data
+  // myKey is the name of the custom metric you want to track
+  const dataToTrack = {
+    myKey: {
+      arr: [1, 'foo'],
+      nested: {
+        a: 1,
+        b: {
+          key: 'bar'
+        }
+      }
+    },
+    metricValue: 1
+  }
+  const trackData = () => track(USER, dataToTrack)
 
 </script>
 ```
@@ -129,10 +145,20 @@ GET /api/launch-darkly/flags/flag-key/detail?{query-params}
 
 #### /user
 
+##### Identify
+
 [LDClient.identify](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#identify)
 
 ```html
 GET /api/launch-darkly/user/identify?{query-params}
+```
+
+##### Track
+
+[LDClient.track](https://launchdarkly.github.io/node-server-sdk/interfaces/_launchdarkly_node_server_sdk_.LDClient.html#track)
+
+```bash
+curl -X POST "/api/launch-darkly/user/track?{query-params}" -H "Content-Type: application/json" -d '{"myKey":{"arr":[1,"foo"],"nested":{"a":1,"b":{"key":"bar"}}},"metricValue":1}'
 ```
 
 ## Development
