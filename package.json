@@ -44,7 +44,7 @@
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "cypress": "9.5.0",
+    "cypress": "9.5.1",
     "eslint": "latest",
     "eslint-config-prettier": "8.4.0",
     "eslint-plugin-prettier": "4.0.0",
